@@ -1,0 +1,10 @@
+{
+    "type": "reaction",
+    "output": 200,
+    "ingredients" : {
+        "Hydrocarbons" : 100,
+        "Evaporite Deposits" : 100,
+        "Hydrogen Fuel Block" : 5
+    }
+}
+
