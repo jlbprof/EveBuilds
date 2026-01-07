@@ -1,0 +1,9 @@
+{
+    "type": "reaction",
+    "output": 200,
+    "ingredients": {
+        "Carbon Polymers": 200,
+        "Sulfuric Acid": 200,
+        "Oxy-Organic Solvents": 1
+    }
+}

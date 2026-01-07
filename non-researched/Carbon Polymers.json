@@ -1,0 +1,9 @@
+{
+    "type": "reaction",
+    "output": 200,
+    "ingredients": {
+        "Hydrocarbons": 100,
+        "Silicates": 100,
+        "Helium Fuel Blocks": 5
+    }
+}

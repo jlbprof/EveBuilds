@@ -1,0 +1,9 @@
+{
+    "type": "reaction",
+    "output": 200,
+    "ingredients": {
+       "Atmospheric Gases": 100,
+       "Silicates" : 100,
+       "Oxygen Fuel Blocks": 5
+    }
+}

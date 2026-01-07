@@ -1,0 +1,6 @@
+# Ignore common files
+*.log
+*.tmp
+.DS_Store
+__pycache__/
+*.pyc

@@ -1,0 +1,9 @@
+{
+    "type": "manufacture",
+    "output": 3,
+    "ingredients": {
+        "Test Cultures": 8,
+        "Viral Agent": 8,
+        "Reinforced Carbon Fiber": 10
+    }
+}

@@ -1,0 +1,10 @@
+{
+    "type": "manufacture",
+    "output": 1,
+    "ingredients": {
+        "Pressurized Oxidizers": 500,
+        "Reinforced Carbon Fiber": 500,
+        "Chiral Structures" : 100,
+        "Water" : 100
+    }
+}
