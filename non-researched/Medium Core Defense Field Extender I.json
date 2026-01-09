@@ -1,0 +1,9 @@
+{
+    "output" : 1,
+    "type": "manufacture",
+    "ingredients" : {
+        "Tripped Power Circuit" : 22,
+        "Burned Logic Circuit" : 22,
+        "Ward Console" : 75000
+    }
+}

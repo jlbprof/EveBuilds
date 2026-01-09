@@ -1,0 +1,15 @@
+{
+    "output" : 1,
+    "type": "manufacture",
+    "ingredients" : {
+        "Tritanium" : 540000,
+        "Pyrite" : 180000,
+        "Mexallon" : 36000,
+        "Isogen" : 10000,
+        "Nocxium" : 1500,
+        "Zydrine" : 350,
+        "Megacyte" : 140,
+        "Auto-Integrity Preservation Seal" : 40,
+        "Life Support Backup Unit": 20
+    }
+}
