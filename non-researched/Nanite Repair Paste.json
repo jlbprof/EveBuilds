@@ -1,0 +1,9 @@
+{
+    "output" : 10,
+    "type": "manufacture",
+    "ingredients" : {
+        "Gel-Matrix Biopaste" : 1,
+        "Nanites" : 4,
+        "Data Chips" : 1
+    }
+}

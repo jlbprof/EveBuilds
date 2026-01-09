@@ -1,0 +1,9 @@
+{
+    "output" : 100,
+    "type": "manufacture",
+    "ingredients" : {
+        "Tritanium" : 351,
+        "Pyrite" : 119,
+        "Noxcium" : 1
+    }
+}

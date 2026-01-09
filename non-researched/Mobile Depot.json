@@ -1,0 +1,13 @@
+{
+    "output" : 1,
+    "type": "manufacture",
+    "ingredients" : {
+        "Tritanium" : 5556,
+        "Pyrite" : 222,
+        "Zydrine" : 444,
+        "Smartfab Units" : 3,
+        "Nuclear Reactors" : 1,
+        "Guidance systems" : 3,
+        "High-Tech Transmitters" : 3
+    }
+}

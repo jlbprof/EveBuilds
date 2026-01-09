@@ -6,7 +6,11 @@ import math
 import os
 import sys
 
+from utils import parse_fit
+from utils import increment_qty_in_dict
+
 full_list = {}
+recipes   = {}
 
 def recipe_exists(recipe_name):
     recipe_file = f"{recipe_name}.json"
@@ -14,6 +18,26 @@ def recipe_exists(recipe_name):
     if not os.path.exists(recipe_path):
         return (0, recipe_path)
     return (1, recipe_path)
+
+def add_fit_ingredients(ingredients):
+    required = {}
+    for ing, qty in ingredients.items():
+        required[ing] = {
+            'ingredient': ing,
+            'qty': qty,
+        }
+
+    for value in required.values():
+        ingredient = value["ingredient"]
+        qty = value["qty"]
+
+        has_recipe = add_recipe(ingredient, qty)
+        if not has_recipe:
+            print(f"Not recipe ({ingredient}) ({qty:,})")
+            if not ingredient in full_list:
+                full_list[ingredient] = { "ingredient": ingredient, "qty": qty }
+            else:
+                full_list[ingredient]["qty"] = full_list[ingredient]["qty"] + qty;
 
 def add_recipe(recipe_name, quantity):
     (exists, recipe_path) = recipe_exists(recipe_name)
@@ -29,6 +53,7 @@ def add_recipe(recipe_name, quantity):
         output_quantity = data["output"]
        
         num_runs = int(math.ceil(quantity / output_quantity));
+        increment_qty_in_dict(recipes, recipe_name, num_runs)
 
         required = {}
         for ing, qty in ingredients.items():
@@ -55,9 +80,18 @@ def add_recipe(recipe_name, quantity):
 
     return 1
 
-def build_list(recipe_name, quantity):
+def build_list(fit_path, quantity):
+    myfit = parse_fit(fit_path) 
+
+    recipe_name = myfit["type"]
     try:
         add_recipe(recipe_name, quantity)
+        add_fit_ingredients(myfit["high"])
+        add_fit_ingredients(myfit["mid"])
+        add_fit_ingredients(myfit["low"])
+        add_fit_ingredients(myfit["rigs"])
+        add_fit_ingredients(myfit["drones"])
+        add_fit_ingredients(myfit["cargo"])
 
     except Exception as e:
         print(f"Error: {e}")
@@ -89,7 +123,7 @@ if __name__ == "__main__":
     for ingredient, value in full_list.items():
         ing = value["ingredient"]
         qty = value["qty"]
-        category = categories.get(ing, "NotSet")
+        category = categories.get(ing, "Buy")
 
         line = f"{category},{ingredient},{qty:,}"
         lines.append(line)
@@ -97,8 +131,18 @@ if __name__ == "__main__":
     lines.sort()
 
     print("")
+    print("==============================================================================")
+    print("==============================================================================")
+    print("==============================================================================")
     print("")
     print(f"Ingredients List to build {quantity} {item_name}s")
+    print("")
+
     for line in lines:
         print(line)
+
+    print ("")
+    print ("Runs needed for each recipe")
+    for recipe in sorted(recipes.keys()):
+        print(f"{recipe} {recipes[recipe]}")
 
