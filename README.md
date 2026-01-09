@@ -64,81 +64,81 @@ Here is an example run, note I removed some of the debug elements of the program
 
 Ingredients List to build 10 fits/Armageddon: Test Fit.fit.examples
 
-Buy,'Arbalest' Rapid Heavy Missile Launcher I,5
-Buy,100MN Monopropellant Enduring Afterburner,1
-Buy,1600mm Steel Plates II,3
-Buy,500MN Quad LiF Restrained Microwarpdrive,1
-Buy,Armor Plates,166
-Buy,Burned Logic Circuit,100
-Buy,Caldari Navy Mjolnir Heavy Missile,1,200
-Buy,Caldari Navy Vespa,5
-Buy,Charred Micro Circuit,89
-Buy,Contaminated Nanite Compound,112
-Buy,Damage Control II,1
-Buy,Explosive Coating II,1
-Buy,Faint Epsilon Scoped Warp Scrambler,1
-Buy,Fried Interface Control,166
-Buy,Heavy F-RX Compact Capacitor Booster,1
-Buy,Heavy Gremlin Compact Energy Neutralizer,2
-Buy,Heavy Jigoro Enduring Stasis Grappler,1
+Buy,'Arbalest' Rapid Heavy Missile Launcher I,50
+Buy,100MN Monopropellant Enduring Afterburner,10
+Buy,1600mm Steel Plates II,30
+Buy,500MN Quad LiF Restrained Microwarpdrive,10
+Buy,Armor Plates,1,660
+Buy,Burned Logic Circuit,1,000
+Buy,Caldari Navy Mjolnir Heavy Missile,12,000
+Buy,Caldari Navy Vespa,50
+Buy,Charred Micro Circuit,890
+Buy,Contaminated Nanite Compound,1,120
+Buy,Damage Control II,10
+Buy,Explosive Coating II,10
+Buy,Faint Epsilon Scoped Warp Scrambler,10
+Buy,Fried Interface Control,1,660
+Buy,Heavy F-RX Compact Capacitor Booster,10
+Buy,Heavy Gremlin Compact Energy Neutralizer,20
+Buy,Heavy Jigoro Enduring Stasis Grappler,10
 Buy,Helium Fuel Blocks,125
 Buy,Hydrogen Fuel Blocks,315
-Buy,Large Armor Repairer II,1
-Buy,Large I-ax Enduring Remote Armor Repairer,1
-Buy,Multispectrum Coating II,1
-Buy,Multispectrum Energized Membrane II,3
-Buy,Navy Cap Booster 3200,5
+Buy,Large Armor Repairer II,10
+Buy,Large I-ax Enduring Remote Armor Repairer,10
+Buy,Multispectrum Coating II,10
+Buy,Multispectrum Energized Membrane II,30
+Buy,Navy Cap Booster 3200,50
 Buy,Nitrogen Fuel Blocks,125
 Buy,Oxygen Fuel Blocks,370
-Buy,Parallel Enduring Target Painter,1
-Buy,Thruster Console,33
-Mineral,Isogen,1,300,754
+Buy,Parallel Enduring Target Painter,10
+Buy,Thruster Console,330
+Mineral,Isogen,1,307,540
 Mineral,Megacyte,19,500
-Mineral,Mexallon,3,901,309
-Mineral,Nocxium,156,424
-Mineral,Pyrite,26,012,978
-Mineral,Tritanium,52,094,410
-Mineral,Zydrine,39,644
+Mineral,Mexallon,3,913,090
+Mineral,Nocxium,160,240
+Mineral,Pyrite,26,129,780
+Mineral,Tritanium,52,944,100
+Mineral,Zydrine,45,440
 Moon,Atmospheric Gases,30,800
 Moon,Evaporite Deposits,8,800
 Moon,Hydrocarbons,30,800
 Moon,Silicates,8,800
 P1,Chiral Structures,1,000
 P1,Water,1,000
-P2,Nanites,2,052
+P2,Nanites,2,512
 P2,Supertensile Plastics,2,000
 P2,Test Cultures,2,000
 P2,Viral Agent,2,000
-P3,Data Chips,13
-P3,Gel-Matrix Biopaste,13
-P3,Guidance systems,3
-P3,High-Tech Transmitters,3
-P3,Nuclear Reactors,1
-P3,Smartfab Units,3
+P3,Data Chips,128
+P3,Gel-Matrix Biopaste,128
+P3,Guidance systems,30
+P3,High-Tech Transmitters,30
+P3,Nuclear Reactors,10
+P3,Smartfab Units,30
 
 Runs needed for each recipe
 Armageddon 10
 Auto-Integrity Preservation Seal 500
 Carbon Fiber 63
 Carbon Polymers 25
-Core Probe Launcher I 1
-Core Scanner Probe I 24
+Core Probe Launcher I 10
+Core Scanner Probe I 240
 Core Temperature Regulator 10
-Hornet I 5
-Inferno Heavy Missile 12
-Large Higgs Anchor I 1
-Large Trimark Armor Pump I 2
+Hornet I 50
+Inferno Heavy Missile 120
+Large Higgs Anchor I 10
+Large Trimark Armor Pump I 20
 Life Support Backup Unit 250
-Mobile Depot 1
-Nanite Repair Paste 13
-Nova Heavy Missile 12
+Mobile Depot 10
+Nanite Repair Paste 128
+Nova Heavy Missile 120
 Oxy-Organic Solvents 11
 Pressurized Oxidizers 25
 Reinforced Carbon Fiber 63
 Sulfuric Acid 25
 Thermosetting Polymer 63
-Vespa I 5
-Wasp I 10
+Vespa I 50
+Wasp I 100
 ```
 
 The first part of the output, is the list of items to acquire, the 2nd is each recipe (blueprint) to run and how many runs of each are needed.
