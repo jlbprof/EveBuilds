@@ -1,6 +1,6 @@
 # Eve Builds
 
-This program is for corporate industry folks.  I does *not* look at prices.  It generates a list of materials to acquire from stores, or buy outright from a trade hub.
+This program is for corporate industry folks.  It does *not* look at prices.  It generates a list of materials to acquire from stores, or buy outright from a trade hub.
 
 This program given a fit, and a quantity to build will generate a list of items to acquire from stores, or to buy outright from a trade hub.  Then it lists all the recipes you need to run, and how many runs of each recipe.
 
@@ -9,7 +9,7 @@ This program given a fit, and a quantity to build will generate a list of items 
 * This is a list of fits you build.
 * Each file ends in ".fit" and is just the contents of "Copy to Clipboard" you get from the fittings window.
 * One fit is openly listed as an example, you can run it directly (the .fit is not necessary).
-* You have to manually managed the contents of this directory.
+* You have to manually manage the contents of this directory.
 
 ## non-researched directory.
 
@@ -89,14 +89,13 @@ Buy,Multispectrum Coating II,1
 Buy,Multispectrum Energized Membrane II,3
 Buy,Navy Cap Booster 3200,5
 Buy,Nitrogen Fuel Blocks,125
-Buy,Nocxium,270
 Buy,Oxygen Fuel Blocks,370
 Buy,Parallel Enduring Target Painter,1
 Buy,Thruster Console,33
 Mineral,Isogen,1,300,754
 Mineral,Megacyte,19,500
 Mineral,Mexallon,3,901,309
-Mineral,Noxcium,156,154
+Mineral,Nocxium,156,424
 Mineral,Pyrite,26,012,978
 Mineral,Tritanium,52,094,410
 Mineral,Zydrine,39,644
