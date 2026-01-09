@@ -138,7 +138,7 @@ if __name__ == "__main__":
     print("==============================================================================")
     print("==============================================================================")
     print("")
-    print(f"Ingredients List to build {quantity} {item_name}s")
+    print(f"Ingredients List to build {quantity} {item_name}")
     print("")
 
     for line in lines:
