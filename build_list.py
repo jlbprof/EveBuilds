@@ -19,12 +19,13 @@ def recipe_exists(recipe_name):
         return (0, recipe_path)
     return (1, recipe_path)
 
-def add_fit_ingredients(ingredients):
+def add_fit_ingredients(ingredients, quantity):
     required = {}
     for ing, qty in ingredients.items():
+        num = qty * quantity
         required[ing] = {
             'ingredient': ing,
-            'qty': qty,
+            'qty': num,
         }
 
     for value in required.values():
@@ -54,6 +55,8 @@ def add_recipe(recipe_name, quantity):
        
         num_runs = int(math.ceil(quantity / output_quantity));
         increment_qty_in_dict(recipes, recipe_name, num_runs)
+        print(f"ADDING TO RECIPES :{recipe_name}: :{num_runs}: :{recipes[recipe_name]}")
+        print(f"Quantity :{quantity}: :{output_quantity}: :{num_runs}:")
 
         required = {}
         for ing, qty in ingredients.items():
@@ -86,12 +89,12 @@ def build_list(fit_path, quantity):
     recipe_name = myfit["type"]
     try:
         add_recipe(recipe_name, quantity)
-        add_fit_ingredients(myfit["high"])
-        add_fit_ingredients(myfit["mid"])
-        add_fit_ingredients(myfit["low"])
-        add_fit_ingredients(myfit["rigs"])
-        add_fit_ingredients(myfit["drones"])
-        add_fit_ingredients(myfit["cargo"])
+        add_fit_ingredients(myfit["high"], quantity)
+        add_fit_ingredients(myfit["mid"], quantity)
+        add_fit_ingredients(myfit["low"], quantity)
+        add_fit_ingredients(myfit["rigs"], quantity)
+        add_fit_ingredients(myfit["drones"], quantity)
+        add_fit_ingredients(myfit["cargo"], quantity)
 
     except Exception as e:
         print(f"Error: {e}")
