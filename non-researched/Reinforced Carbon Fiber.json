@@ -1,6 +1,6 @@
 {
     "output": 200,
-    "type": "manufacture",
+    "type": "reaction",
     "ingredients": {
         "Carbon Fiber" : 200,
         "Oxy-Organic Solvents" : 1,
