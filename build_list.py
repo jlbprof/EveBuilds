@@ -185,7 +185,7 @@ if __name__ == "__main__":
 
     print ("")
     print ("")
-    print ("Reactions/Blueprints Breakdown in order")
+    print ("Perform the Blueprint/Reaction Runs in this order:")
     print ("")
 
     # The build report is very complex.
