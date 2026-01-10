@@ -1,4 +1,6 @@
 
+import csv
+import json
 import os
 import sys
 
@@ -99,4 +101,34 @@ def parse_fit(fit_path):
         parse_line_update_dict(cargo, line)
 
     return { "type": ship_type, "name": ship_name, "high": high_slots, "low": low_slots, "mid": mid_slots, "rigs": rig_slots, "drones": drones, "cargo": cargo }
+
+def recipe_exists(recipe_name):
+    recipe_file = f"{recipe_name}.json"
+    recipe_path = os.path.join('recipes', recipe_file)
+    if not os.path.exists(recipe_path):
+        return (0, recipe_path)
+    return (1, recipe_path)
+
+def load_recipe(recipe_name):
+    (exists, recipe_path) = recipe_exists(recipe_name)
+    with open(recipe_path, 'r') as f:
+        recipe = json.load(f)
+
+    return recipe
+
+def load_categories(path):
+    categories = {}
+    with open(path, 'r') as f:
+        reader = csv.reader(f)
+        for row in reader:
+            if row:
+                categories[row[0].strip()] = row[1].strip()
+
+    return categories
+
+
+
+            
+
+
 

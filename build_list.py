@@ -1,23 +1,13 @@
 #!/usr/bin/python3
 
-import csv
-import json
 import math
 import os
 import sys
 
-from utils import parse_fit
-from utils import increment_qty_in_dict
+from utils import parse_fit, increment_qty_in_dict, load_recipe, recipe_exists, load_categories, is_item_a_mat
 
 full_list = {}
 recipes   = {}
-
-def recipe_exists(recipe_name):
-    recipe_file = f"{recipe_name}.json"
-    recipe_path = os.path.join('recipes', recipe_file)
-    if not os.path.exists(recipe_path):
-        return (0, recipe_path)
-    return (1, recipe_path)
 
 def add_fit_ingredients(ingredients, quantity):
     required = {}
@@ -47,11 +37,9 @@ def add_recipe(recipe_name, quantity):
 
     print(f"Recipe {recipe_name}:{quantity:,}")
     try:
-        with open(recipe_path, 'r') as f:
-            data = json.load(f)
-        
-        ingredients = data["ingredients"]
-        output_quantity = data["output"]
+        recipe = load_recipe(recipe_name)
+        ingredients = recipe["ingredients"]
+        output_quantity = recipe["output"]
        
         num_runs = int(math.ceil(quantity / output_quantity));
         increment_qty_in_dict(recipes, recipe_name, num_runs)
@@ -99,6 +87,45 @@ def build_list(fit_path, quantity):
     except Exception as e:
         print(f"Error: {e}")
 
+def is_done(master_list, item):
+    return master_list[item][done]
+
+cagetory_is_a_mat = { "Mineral": True, "Moon": True, "P1": True, "P2": True, "P3": True }
+
+def is_item_a_mat(categories, item):
+    if categories[item] in category_is_a_mat:
+        return True
+
+    # Also considered a mat, if no recipe exists for it.
+    (exists, path) = recipe_exists(item)
+    if not exists
+        return True
+
+    return False
+
+# This is complex, we want to know if all the materials or sub recipes are completed
+# If so then we can print this recipe, otherwise we need to wait on this item
+
+def are_all_ingredients_mats_or_done(master_list, item):
+    recipe = master_list[item]["recipe"]
+    ingredients = recipe["ingredients"]
+    for ing in ingredients.keys():
+        if not is_item_a_mat(master_list, ing):
+            if ing in master_list && not master_list[item]["done"]
+                return False
+
+    return True
+
+def print_recipe_and_mark_done(recipe, master_list):
+    ingredients = master_list[recipe]["recipe"]["ingredients"]
+    xtype = master_list[recipe]["type"]
+
+    print(f"{type} {recipe} Ingredients Make {num_runs}")
+
+
+
+    master_list[recipe]["done"] = True
+
 if __name__ == "__main__":
     if len(sys.argv) != 3:
         print("Usage: python3 build_list.py <item_name> <quantity>")
@@ -113,14 +140,9 @@ if __name__ == "__main__":
         print("Quantity must be a positive integer.")
         sys.exit(1)
 
-    categories = {}
-    with open('categories.csv', 'r') as f:
-        reader = csv.reader(f)
-        for row in reader:
-            if row:
-                categories[row[0].strip()] = row[1].strip()
-
     build_list(item_name, quantity)
+
+    categories = load_categories("categories.csv")
 
     lines = []
     for ingredient, value in full_list.items():
@@ -144,8 +166,55 @@ if __name__ == "__main__":
     for line in lines:
         print(line)
 
-    print ("")
-    print ("Runs needed for each recipe")
+    # separate reactions and blueprints
+    blueprint_report = {}
+
     for recipe in sorted(recipes.keys()):
+        recipe_data = load_recipe(recipe)
+        blueprint_report[recipe] = { "recipe": recipe_data, "done": False, "type": "Reaction" if recipe_data["type"] == "reaction" else "Blueprint" }
+
+    print ("")
+    print ("")
+    print ("Reactions Breakdown in order")
+    print ("")
+
+    # The build report is very complex.
+    #
+    # We want to print out the items in order of buildability
+    # Whereas item1 needs item2 built then we print item2 first then item1
+
+    while True:
+        did_something = False
+
+        for repipe in blueprint_report.keys():
+            # We have already listed this recipe
+            if is_done(reactions, formula):
+                continue
+
+            if are_all_ingredients_mats_or_done(reactions, formula, blueprints, reactions):
+                # We can do this one
+
+
+
+
+
+
+
+
+
+    print ("Runs needed for each blueprint (recipe)")
+    for recipe in sorted(recipes.keys()):
+        recipe_data = load_recipe(recipe)
+        if recipe_data["type"] != "manufacture":
+            continue
+        
+        print(f"{recipe} {recipes[recipe]}")
+
+    print ("")
+    for recipe in sorted(recipes.keys()):
+        recipe_data = load_recipe(recipe)
+        if recipe_data["type"] != "reaction":
+            continue
+        
         print(f"{recipe} {recipes[recipe]}")
 
