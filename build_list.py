@@ -4,7 +4,7 @@ import math
 import os
 import sys
 
-from utils import parse_fit, increment_qty_in_dict, load_recipe, recipe_exists, load_categories, is_item_a_mat
+from utils import parse_fit, increment_qty_in_dict, load_recipe, recipe_exists, load_categories, pretty_print
 
 full_list = {}
 recipes   = {}
@@ -88,20 +88,26 @@ def build_list(fit_path, quantity):
         print(f"Error: {e}")
 
 def is_done(master_list, item):
-    return master_list[item][done]
+    return master_list[item]["done"]
 
-cagetory_is_a_mat = { "Mineral": True, "Moon": True, "P1": True, "P2": True, "P3": True }
+category_is_a_mat = { "Mineral": True, "Moon": True, "P1": True, "P2": True, "P3": True }
 
 def is_item_a_mat(categories, item):
-    if categories[item] in category_is_a_mat:
+    if item in category_is_a_mat:
         return True
 
     # Also considered a mat, if no recipe exists for it.
     (exists, path) = recipe_exists(item)
-    if not exists
+    if not exists:
         return True
 
     return False
+
+def material_blueprint_reaction(master_list, recipe):
+    if is_item_a_mat(categories, recipe):
+        return "Material"
+
+    return master_list[recipe]["type"]
 
 # This is complex, we want to know if all the materials or sub recipes are completed
 # If so then we can print this recipe, otherwise we need to wait on this item
@@ -110,8 +116,8 @@ def are_all_ingredients_mats_or_done(master_list, item):
     recipe = master_list[item]["recipe"]
     ingredients = recipe["ingredients"]
     for ing in ingredients.keys():
-        if not is_item_a_mat(master_list, ing):
-            if ing in master_list && not master_list[item]["done"]
+        if not is_item_a_mat(categories, ing):
+            if ing in master_list and not master_list[ing]["done"]:
                 return False
 
     return True
@@ -119,11 +125,15 @@ def are_all_ingredients_mats_or_done(master_list, item):
 def print_recipe_and_mark_done(recipe, master_list):
     ingredients = master_list[recipe]["recipe"]["ingredients"]
     xtype = master_list[recipe]["type"]
+    qty = recipes[recipe]
 
-    print(f"{type} {recipe} Ingredients Make {num_runs}")
+    print(f"{xtype} {recipe} Number of runs: {qty}")
+    for ing in ingredients.keys():
+        num = ingredients[ing] * qty
+        mat = material_blueprint_reaction(blueprint_report, ing)
+        print(f"    {mat} {ing} {num}")
 
-
-
+    print("")
     master_list[recipe]["done"] = True
 
 if __name__ == "__main__":
@@ -175,7 +185,7 @@ if __name__ == "__main__":
 
     print ("")
     print ("")
-    print ("Reactions Breakdown in order")
+    print ("Reactions/Blueprints Breakdown in order")
     print ("")
 
     # The build report is very complex.
@@ -183,38 +193,17 @@ if __name__ == "__main__":
     # We want to print out the items in order of buildability
     # Whereas item1 needs item2 built then we print item2 first then item1
 
-    while True:
+    did_something = True
+    while did_something:
         did_something = False
 
-        for repipe in blueprint_report.keys():
+        for recipe in blueprint_report.keys():
             # We have already listed this recipe
-            if is_done(reactions, formula):
+            if is_done(blueprint_report, recipe):
                 continue
 
-            if are_all_ingredients_mats_or_done(reactions, formula, blueprints, reactions):
+            if are_all_ingredients_mats_or_done(blueprint_report, recipe):
                 # We can do this one
-
-
-
-
-
-
-
-
-
-    print ("Runs needed for each blueprint (recipe)")
-    for recipe in sorted(recipes.keys()):
-        recipe_data = load_recipe(recipe)
-        if recipe_data["type"] != "manufacture":
-            continue
-        
-        print(f"{recipe} {recipes[recipe]}")
-
-    print ("")
-    for recipe in sorted(recipes.keys()):
-        recipe_data = load_recipe(recipe)
-        if recipe_data["type"] != "reaction":
-            continue
-        
-        print(f"{recipe} {recipes[recipe]}")
+                print_recipe_and_mark_done(recipe, blueprint_report)
+                did_something = True
 

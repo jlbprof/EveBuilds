@@ -126,9 +126,6 @@ def load_categories(path):
 
     return categories
 
-
-
-            
-
-
+def pretty_print(data):
+    print(json.dumps(data, indent=4))
 
