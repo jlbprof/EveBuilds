@@ -1,0 +1,9 @@
+{
+    "output" : 1,
+    "type": "manufacture",
+    "ingredients" : {
+        "Charred Micro Circuit" : 18,
+        "Burned Logic Circuit" : 20,
+        "Thruster Console" : 7
+    }
+}

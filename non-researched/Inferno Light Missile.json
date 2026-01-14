@@ -1,0 +1,8 @@
+{
+    "output" : 100,
+    "type": "manufacture",
+    "ingredients" : {
+        "Tritanium" : 58,
+        "Pyrite" : 72
+    }
+}

@@ -1,0 +1,13 @@
+{
+    "output" : 1,
+    "type": "manufacture",
+    "ingredients" : {
+        "Tritanium" : 2800000,
+        "Pyrite" : 1000000,
+        "Mexallon" : 180000,
+        "Isogen" : 20000,
+        "Nocxium" : 8000,
+        "Zydrine" : 2000,
+        "Megacyte" : 400
+    }
+}

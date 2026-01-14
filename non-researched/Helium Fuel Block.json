@@ -1,0 +1,15 @@
+{
+    "output" : 40,
+    "type": "manufacture",
+    "ingredients" : {
+        "Enriched Uranium" : 4,
+        "Oxygen" : 22,
+        "Mechanical Parts" : 4,
+        "Coolant" : 9,
+        "Robotics" : 1,
+        "Heavy Water" : 170,
+        "Liquid Ozone" : 350,
+        "Helium Isotopes" : 450,
+        "Strontium Clathrates" : 20
+    }
+}

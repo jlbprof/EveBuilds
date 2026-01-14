@@ -102,6 +102,28 @@ def parse_fit(fit_path):
 
     return { "type": ship_type, "name": ship_name, "high": high_slots, "low": low_slots, "mid": mid_slots, "rigs": rig_slots, "drones": drones, "cargo": cargo }
 
+# 1 - Is a fit
+# 2 - Is a recipe
+# 999 - Error
+
+def determine_if_fit_or_recipe(file_path):
+    if not os.path.exists(file_path):
+        return (999, "Cannot find file")
+
+    with open(file_path, 'r') as f:
+        first_line = f.readline().strip()
+
+    first_char = first_line[0]
+
+    if first_char == '[':
+        return (1, "FIT")
+
+    if first_char == '{':
+        recipe_name = file_path.split('/')[-1].split('.')[0]
+        return (2, recipe_name)
+
+    return (999, "Unknown Type")
+
 def recipe_exists(recipe_name):
     recipe_file = f"{recipe_name}.json"
     recipe_path = os.path.join('recipes', recipe_file)

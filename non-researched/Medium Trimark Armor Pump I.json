@@ -1,0 +1,9 @@
+{
+    "output" : 1,
+    "type": "manufacture",
+    "ingredients" : {
+        "Contaminated Nanite Compound" : 11,
+        "Fried Interface Control" : 17,
+        "Armor Plates": 14
+    }
+}

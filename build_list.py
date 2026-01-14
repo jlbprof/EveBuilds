@@ -4,7 +4,8 @@ import math
 import os
 import sys
 
-from utils import parse_fit, increment_qty_in_dict, load_recipe, recipe_exists, load_categories, pretty_print
+from utils import parse_fit, increment_qty_in_dict, load_recipe, recipe_exists, load_categories
+from utils import pretty_print, determine_if_fit_or_recipe
 
 full_list = {}
 recipes   = {}
@@ -72,20 +73,27 @@ def add_recipe(recipe_name, quantity):
     return 1
 
 def build_list(fit_path, quantity):
-    myfit = parse_fit(fit_path) 
+    (ret, msg) = determine_if_fit_or_recipe(fit_path)
+    if ret == 999:
+        raise Exception(f"ERROR :{msg}:")
 
-    recipe_name = myfit["type"]
-    try:
-        add_recipe(recipe_name, quantity)
-        add_fit_ingredients(myfit["high"], quantity)
-        add_fit_ingredients(myfit["mid"], quantity)
-        add_fit_ingredients(myfit["low"], quantity)
-        add_fit_ingredients(myfit["rigs"], quantity)
-        add_fit_ingredients(myfit["drones"], quantity)
-        add_fit_ingredients(myfit["cargo"], quantity)
+    if ret == 2:
+        add_recipe(msg, quantity)
+    else:
+        myfit = parse_fit(fit_path) 
 
-    except Exception as e:
-        print(f"Error: {e}")
+        recipe_name = myfit["type"]
+        try:
+            add_recipe(recipe_name, quantity)
+            add_fit_ingredients(myfit["high"], quantity)
+            add_fit_ingredients(myfit["mid"], quantity)
+            add_fit_ingredients(myfit["low"], quantity)
+            add_fit_ingredients(myfit["rigs"], quantity)
+            add_fit_ingredients(myfit["drones"], quantity)
+            add_fit_ingredients(myfit["cargo"], quantity)
+
+        except Exception as e:
+            print(f"Error: {e}")
 
 def is_done(master_list, item):
     return master_list[item]["done"]
@@ -138,7 +146,7 @@ def print_recipe_and_mark_done(recipe, master_list):
 
 if __name__ == "__main__":
     if len(sys.argv) != 3:
-        print("Usage: python3 build_list.py <item_name> <quantity>")
+        print("Usage: python3 build_list.py [path to fit|path to recipe] <quantity>")
         sys.exit(1)
     
     item_name = sys.argv[1]
