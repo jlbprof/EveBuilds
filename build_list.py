@@ -72,7 +72,7 @@ def add_recipe(recipe_name, quantity):
 
     return 1
 
-def build_list(fit_path, quantity):
+def build_list(fit_path, quantity, include_ship=True):
     (ret, msg) = determine_if_fit_or_recipe(fit_path)
     if ret == 999:
         raise Exception(f"ERROR :{msg}:")
@@ -84,7 +84,8 @@ def build_list(fit_path, quantity):
 
         recipe_name = myfit["type"]
         try:
-            add_recipe(recipe_name, quantity)
+            if include_ship:
+                add_recipe(recipe_name, quantity)
             add_fit_ingredients(myfit["high"], quantity)
             add_fit_ingredients(myfit["mid"], quantity)
             add_fit_ingredients(myfit["low"], quantity)
@@ -145,8 +146,15 @@ def print_recipe_and_mark_done(recipe, master_list):
     master_list[recipe]["done"] = True
 
 if __name__ == "__main__":
+    include_ship = True
+    
+    if len(sys.argv) >= 2 and sys.argv[1] == "--no-ship":
+        include_ship = False
+        sys.argv.pop(1)
+    
     if len(sys.argv) != 3:
-        print("Usage: python3 build_list.py [path to fit|path to recipe] <quantity>")
+        print("Usage: python3 build_list.py [--no-ship] [path to fit|path to recipe] <quantity>")
+        print("       --no-ship: When adding a fit, skip the main ship itself and only list components")
         sys.exit(1)
     
     item_name = sys.argv[1]
@@ -158,7 +166,7 @@ if __name__ == "__main__":
         print("Quantity must be a positive integer.")
         sys.exit(1)
 
-    build_list(item_name, quantity)
+    build_list(item_name, quantity, include_ship)
 
     categories = load_categories("categories.csv")
 
